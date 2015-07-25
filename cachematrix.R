@@ -45,11 +45,34 @@ makeCacheMatrix <- function(x = matrix()) {
 
 
 
-
+## ******************************************************************************
+# The following function is where the computations are performed to check whether
+# the matrix was inversed. If so, get it from cache, otherwise invert it.
 
 cacheSolve <- function(x, ...) {
-   
+    
+    mtrx <- x$getinverse()
+    
+    # Check if matrix was previously inversed and return if not null
+    if(!is.null(mtrx)) {
+        
+        message("...getting cached data.")
+        
+        return(mtrx)
+    }
+    
+    # If matrix not inversed, get the matrix
+    data <- x$getmatrix()
+    
+    # Invert the matrix via Solve
+    mtrx <- solve(data)
+    
+    # Call setinvese from makeCacheMatrix
+    x$setinverse(mtrx)
+    
+    # Return the result to the console
+    mtrx
 }
 
-rm(list = ls())
+
 
