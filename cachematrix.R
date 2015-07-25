@@ -9,9 +9,36 @@
 # cache rather than computing it again.
 
 
-x <- matrix(rnorm(16, 20, 1), 4) # Create 4 x4 square matrix with random numbers
-                                 # With mean 20 and one standard deviation
-                                 # Pass this into the function makeCacheMatrix()
+## Example data:
+
+## x <- matrix(rnorm(16, 20, 1), 4)
+
+## mc = makeCacheMatrix(x)
+
+## mc$getgematrix()
+##      [,1]     [,2]     [,3]     [,4]
+## [1,] 19.54580 17.85507 21.75519 20.85551
+## [2,] 20.44570 19.93038 20.12877 19.24436
+## [3,] 18.67498 20.55098 20.19559 19.19340
+## [4,] 19.73979 21.79584 20.73578 20.27783
+
+## Cache not set when first running the function
+## cacheSolve(mc)
+##      [,1]       [,2]       [,3]       [,4]
+## [1,] -0.1394439  0.9388163  0.1902846 -0.9687553
+## [2,]  0.4198475 -7.2236340  0.5476559  6.2129511
+## [3,]  0.6615009  5.6598126 -1.0219199 -5.2412085
+## [4,] -0.8981584  0.3854057  0.3031381  0.2215028
+
+## Retrieving from the cache
+## cacheSolve(mc)
+## ...getting cached data.
+## [,1]       [,2]       [,3]       [,4]
+## [1,] -0.1394439  0.9388163  0.1902846 -0.9687553
+## [2,]  0.4198475 -7.2236340  0.5476559  6.2129511
+## [3,]  0.6615009  5.6598126 -1.0219199 -5.2412085
+## [4,] -0.8981584  0.3854057  0.3031381  0.2215028
+
 
 ## *****************************************************************************
 ## This function creates a special "matrix" object that can cache its inverse.
@@ -38,7 +65,7 @@ makeCacheMatrix <- function(x = matrix()) {
     getinverse <- function() mtrx
     
     
-    #Declaration of functions to make them availabe to other functions
+    #Declaration of functions to make them availabe in cacheSolve()
     #The first element is the method name that is used to access the function
     list(setmatrix=set, getmatrix=get, setinverse=setinverse, getinverse=getinverse)
 }
