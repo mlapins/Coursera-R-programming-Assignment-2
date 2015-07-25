@@ -41,7 +41,7 @@
 
 
 ## *****************************************************************************
-## This function creates a special "matrix" object that can cache its inverse.
+## This function constructs a special "matrix" object that can cache its inverse.
 
 makeCacheMatrix <- function(x = matrix()) {
     
@@ -65,7 +65,7 @@ makeCacheMatrix <- function(x = matrix()) {
     getinverse <- function() mtrx
     
     
-    #Declaration of functions to make them availabe in cacheSolve()
+    #Declaration of functions to make them availabe as objects in cacheSolve()
     #The first element is the method name that is used to access the function
     list(setmatrix=set, getmatrix=get, setinverse=setinverse, getinverse=getinverse)
 }
